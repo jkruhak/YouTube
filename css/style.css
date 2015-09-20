@@ -1,7 +1,16 @@
-.col-md-10 {
+.videoResult {
 	border: 1px solid black;
+	text-align: center;
 }
 
 #results {
 	margin-top: 15px;
+}
+
+ul {
+	list-style: none;
+}
+
+.search-results {
+	margin-top: 25px;
 }

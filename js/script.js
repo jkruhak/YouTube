@@ -17,18 +17,27 @@ function search() {
     maxResults: '6'
   });
 
+  /*request.execute(function(response) {
+    var str = JSON.stringify(response.result);
+    $('.fullResults').html('<pre>' + str + '</pre>');
+  });*/
+
   request.execute(function(response) {
     for(var i = 0; i < 6; i++) {
       var template = $(".templates .videoResult").clone().appendTo(".fullResults");
 
-      var videoThumbnail = template.find(".thumbnail");
-      var videoImage = JSON.stringify(response.result.items[i].snippet.thumbnails.medium.url);
-      videoThumbnail.html("<img src=" + videoImage + ">");
+      //Display video
+      var videoThumbnail = template.find(".embed-responsive");
+      var videoImage = JSON.stringify(response.result.items[i].id.videoId)
+      var videoImgFormat = videoImage.replace(/['"]+/g, '');
+      videoThumbnail.html("<iframe src='http://www.youtube.com/embed/"+videoImgFormat+"?enablejsapi=1&amp;origin=http://example.com'></iframe>");
 
+      //Display video title
       var videoCaptionTitle = template.find(".h3");
       var videoTitle = JSON.stringify(response.result.items[i].snippet.title);
       videoCaptionTitle.append(videoTitle);
 
+      //Display video description
       var videoDescr = JSON.stringify(response.result.items[i].snippet.description);    
       template.find(".p").append(videoDescr);
     }
