@@ -23,6 +23,7 @@ function search() {
   });*/
 
   request.execute(function(response) {
+    $('.fullResults').empty();
     for(var i = 0; i < 6; i++) {
       var template = $(".templates .videoResult").clone().appendTo(".fullResults");
 
